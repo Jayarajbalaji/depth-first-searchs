@@ -88,6 +88,36 @@ F H <BR>
 <hr>
 ['0', '1', '2', '3', '4']
 
+## PROGRAM
+~~~
+from collections import defaultdict
+
+def dfs(graph, start, visited, path):
+    path.append(start)
+    visited[start] = True
+    for neighbour in graph[start]:
+        if not visited[neighbour]:       # check if not visited
+            dfs(graph, neighbour, visited, path)  # recursive call
+    return path
+
+graph = defaultdict(list)
+n, e = map(int, input("Enter number of nodes and edges: ").split())
+
+for i in range(e):
+    u, v = input().split()
+    graph[u].append(v)   # directed edge
+    graph[v].append(u)   # undirected (optional, remove if not needed)
+
+start = '0'
+visited = defaultdict(bool)
+path = []
+
+traversedpath = dfs(graph, start, visited, path)
+print("DFS Traversal Path:", traversedpath)
+
+~~~
+## OUTPUT
+<img width="1408" height="338" alt="image" src="https://github.com/user-attachments/assets/797a815c-37c7-454a-848f-a843a517e6c1" />
 <hr>
 <h3>Result:</h3>
 <hr>
